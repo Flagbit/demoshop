@@ -13,7 +13,8 @@ RUN apt-get update -y && apt-get install -y \
     wget \
     openssh-server \
     msmtp \
-    sudo
+    sudo \
+    git-all
 
 # Add nodejs repository
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
@@ -74,16 +75,6 @@ RUN mkdir /run/php && \
 COPY config/www.conf /etc/php/7.0/fpm/pool.d/
 COPY config/xdebug.ini /etc/php/7.0/mods-available/xdebug.ini
 COPY config/mbstring.ini /etc/php/7.0/mods-available/mbstring.ini
-
-# Install composer
-#RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-##RUN php -r "if (hash_file('SHA384', 'composer-setup.php') === 'e115a8dc7871f15d853148a7fbac7da27d6c0030b848d9b3dc09e2a0388afed865e6a3d6b3c0fad45c48e2b5fc1196ae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-#RUN php composer-setup.php --install-dir=/usr/bin/ --filename=composer
-#RUN php -r "unlink('composer-setup.php');"
-
-# Install magento cron jobs
-#COPY cron-magento /etc/cron.d/
-#RUN chmod 644 /etc/cron.d/cron-magento
 
 RUN usermod -u 1000 www-data
 
