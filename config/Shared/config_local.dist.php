@@ -1,6 +1,7 @@
 <?php
 
 use Spryker\Shared\Propel\PropelConstants;
+use Spryker\Shared\Session\SessionConstants;
 use Spryker\Shared\Setup\SetupConstants;
 use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Shared\Search\SearchConstants;
@@ -46,3 +47,7 @@ $config[ApplicationConstants::BASE_URL_SSL_YVES] = sprintf(
     $config[ApplicationConstants::HOST_YVES],
     $config[ApplicationConstants::PORT_SSL_YVES]
 );
+
+// ---------- SSL
+$config[ApplicationConstants::YVES_SSL_ENABLED] = true;
+$config[SessionConstants::YVES_SSL_ENABLED] = true;
