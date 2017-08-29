@@ -54,7 +54,6 @@ RUN apt-get update -y && apt-get install -y --force-yes \
     postgresql \
     postgresql-contrib
 
-# Install redis
 
 # SSH config
 RUN mkdir /var/run/sshd
@@ -77,6 +76,8 @@ COPY config/xdebug.ini /etc/php/7.0/mods-available/xdebug.ini
 COPY config/mbstring.ini /etc/php/7.0/mods-available/mbstring.ini
 
 RUN usermod -u 1000 www-data
+
+RUN chown -R www-data:1000 /var/www
 
 COPY docker-entrypoint.sh /
 

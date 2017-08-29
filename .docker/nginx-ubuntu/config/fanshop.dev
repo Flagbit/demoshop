@@ -1,5 +1,5 @@
 upstream fastcgi_backend {
-  server 172.20.0.5:9000;
+  server fanshop-php:9000;
 }
 
 server {

@@ -10,18 +10,6 @@ If you encounter any issues during or after installation, you can first check ou
 
 # Install Locally
 
-Execute composer in order to install the magento core and all 3th party libraries
-
-```
-composer install --ignore-platform-reqs
-```
-
-Execute npm in order to bild the assets and provide basic css files.
-
-```
-npm install
-```
-
 Run docker containers
 
 ```
@@ -50,4 +38,16 @@ ELASTIC_SEARCH_INDEX='de_search'
 VERBOSITY='-v'
 CONSOLE=vendor/bin/console
 
+```
+
+In your php container
+```
+docker exec -u www-data -it fanshop-php bash
+cd /var/www/html
+./setup -i
+```
+
+Login in Backend
+```
+Login to Zed using: user admin@spryker.com and password change123.
 ```
