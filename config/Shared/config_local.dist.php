@@ -16,7 +16,9 @@ $config[PropelConstants::ZED_DB_PORT] = 5432;
 $config[PropelConstants::USE_SUDO_TO_MANAGE_DATABASE] = true;
 
 // ---------- Jenkins ----------
-$config[SetupConstants::JENKINS_BASE_URL] = 'http://' . gethostbyname('fanshop-jenkins') . ':8080/';
+$jenkinsUser = 'admin';
+$jenkinsPass = trim(file_get_contents('/var/jenkins_home/secrets/initialAdminPassword'));
+$config[SetupConstants::JENKINS_BASE_URL] = sprintf('http://%s:%s@%s:8080/', $jenkinsUser, $jenkinsPass, gethostbyname('fanshop-jenkins'));
 $config[SetupConstants::JENKINS_DIRECTORY] = '/data/shop/development/shared/data/common/jenkins';
 
 // ---------- Elasticsearch

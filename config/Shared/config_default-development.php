@@ -69,7 +69,7 @@ $config[SessionConstants::ZED_SESSION_REDIS_DATABASE] = 2;
 $config[SessionConstants::ZED_SESSION_TIME_TO_LIVE] = SessionConstants::SESSION_LIFETIME_1_YEAR;
 
 // ---------- Jenkins
-$config[SetupConstants::JENKINS_BASE_URL] = 'http://' . gethostbyname('fanshop-jenkins') . ':8080/';
+$config[SetupConstants::JENKINS_BASE_URL] = 'http://localhost:10007/';
 $config[SetupConstants::JENKINS_DIRECTORY] = '/data/shop/development/shared/data/common/jenkins';
 
 // ---------- Zed request

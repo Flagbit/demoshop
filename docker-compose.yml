@@ -32,6 +32,8 @@ services:
         container_name: "fanshop-php"
         volumes:
           - .:/var/www/html
+        volumes_from:
+          - "fanshop-jenkins"
         expose:
           - "9000"
         networks:
