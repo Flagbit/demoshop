@@ -1,4 +1,5 @@
 version: "2"
+
 services:
     fanshop-nginx:
         build: "./.docker/nginx-ubuntu/"
@@ -10,8 +11,7 @@ services:
           - "80:80"
           - "443:443"
         networks:
-          fanshop_net:
-            ipv4_address: 172.20.0.3
+          - fanshop-network
 
     fanshop-postgresql-db:
         image: postgres
@@ -25,20 +25,17 @@ services:
             POSTGRES_DB: fanshop_db
             POSTGRES_USER: development
         networks:
-          fanshop_net:
-            ipv4_address: 172.20.0.4
+          - fanshop-network
 
     fanshop-php:
-        build:
-          context: ./.docker/php-ubuntu/
+        build: "./.docker/php-ubuntu/"
         container_name: "fanshop-php"
         volumes:
           - .:/var/www/html
         expose:
           - "9000"
         networks:
-          fanshop_net:
-            ipv4_address: 172.20.0.5
+          - fanshop-network
 
     fanshop-mailcatcher:
         container_name: fanshop-mailcatcher
@@ -47,22 +44,19 @@ services:
             - "1025:1025"
             - "1080:1080"
         networks:
-          fanshop_net:
-            ipv4_address: 172.20.0.6
+          - fanshop-network
 
     fanshop-elasticsearch:
         build: "./.docker/elasticsearch/"
         container_name: "fanshop-elasticsearch"
         networks:
-          fanshop_net:
-            ipv4_address: 172.20.0.8
+          - fanshop-network
 
     fanshop-redis:
         image: "redis:alpine"
         container_name: "fanshop-redis"
         networks:
-          fanshop_net:
-            ipv4_address: 172.20.0.9
+          - fanshop-network
 
     fanshop-jenkins:
         image: "jenkinsci/jenkins"
@@ -70,15 +64,8 @@ services:
         expose:
           - "8080"
         networks:
-          fanshop_net:
-            ipv4_address: 172.20.0.10
-
+          - fanshop-network
 
 networks:
-  fanshop_net:
+  fanshop-network:
     driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.20.0.0/24
-          gateway: 172.20.0.1

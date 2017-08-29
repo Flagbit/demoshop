@@ -36,14 +36,14 @@ $config[PropelConstants::PROPEL_DEBUG] = true;
 $config[PropelConstants::PROPEL_SHOW_EXTENDED_EXCEPTION] = true;
 $config[PropelConstants::ZED_DB_USERNAME] = 'development';
 $config[PropelConstants::ZED_DB_PASSWORD] = 'mate20mg';
-$config[PropelConstants::ZED_DB_HOST] = '172.20.0.4';
+$config[PropelConstants::ZED_DB_HOST] = gethostbyname('fanshop-postgresql-db');
 $config[PropelConstants::ZED_DB_PORT] = 5432;
 $config[PropelConstants::ZED_DB_ENGINE] = $config[PropelConstants::ZED_DB_ENGINE_PGSQL];
 $config[PropelQueryBuilderConstants::ZED_DB_ENGINE] = $config[PropelConstants::ZED_DB_ENGINE_PGSQL];
 
 // ---------- Redis
 $config[StorageConstants::STORAGE_REDIS_PROTOCOL] = 'tcp';
-$config[StorageConstants::STORAGE_REDIS_HOST] = '172.20.0.9';
+$config[StorageConstants::STORAGE_REDIS_HOST] = gethostbyname('fanshop-redis');
 $config[StorageConstants::STORAGE_REDIS_PORT] = '6379';
 $config[StorageConstants::STORAGE_REDIS_PASSWORD] = false;
 $config[StorageConstants::STORAGE_REDIS_DATABASE] = 0;
@@ -69,7 +69,7 @@ $config[SessionConstants::ZED_SESSION_REDIS_DATABASE] = 2;
 $config[SessionConstants::ZED_SESSION_TIME_TO_LIVE] = SessionConstants::SESSION_LIFETIME_1_YEAR;
 
 // ---------- Jenkins
-$config[SetupConstants::JENKINS_BASE_URL] = 'http://localhost:10007/';
+$config[SetupConstants::JENKINS_BASE_URL] = 'http://' . gethostbyname('fanshop-jenkins') . ':8080/';
 $config[SetupConstants::JENKINS_DIRECTORY] = '/data/shop/development/shared/data/common/jenkins';
 
 // ---------- Zed request

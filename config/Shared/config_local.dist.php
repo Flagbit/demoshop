@@ -11,16 +11,16 @@ $config[PropelConstants::PROPEL_SHOW_EXTENDED_EXCEPTION] = true;
 $config[PropelConstants::ZED_DB_USERNAME] = 'development';
 $config[PropelConstants::ZED_DB_PASSWORD] = 'mate20mg';
 $config[PropelConstants::ZED_DB_DATABASE] = 'fanshop_db';
-$config[PropelConstants::ZED_DB_HOST] = '172.20.0.4';
+$config[PropelConstants::ZED_DB_HOST] = gethostbyname('fanshop-postgresql-db');
 $config[PropelConstants::ZED_DB_PORT] = 5432;
 $config[PropelConstants::USE_SUDO_TO_MANAGE_DATABASE] = true;
 
 // ---------- Jenkins ----------
-$config[SetupConstants::JENKINS_BASE_URL] = 'http://172.20.0.10:8080/';
+$config[SetupConstants::JENKINS_BASE_URL] = 'http://' . gethostbyname('fanshop-jenkins') . ':8080/';
 $config[SetupConstants::JENKINS_DIRECTORY] = '/data/shop/development/shared/data/common/jenkins';
 
 // ---------- Elasticsearch
-$ELASTICA_HOST = '172.20.0.8';
+$ELASTICA_HOST = gethostbyname('fanshop-elasticsearch');
 $config[ApplicationConstants::ELASTICA_PARAMETER__HOST] = $ELASTICA_HOST;
 $config[SearchConstants::ELASTICA_PARAMETER__HOST] = $ELASTICA_HOST;
 $ELASTICA_TRANSPORT_PROTOCOL = 'http';

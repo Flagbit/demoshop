@@ -31,7 +31,7 @@ docker-compose up -d
 Local conf
 
 ```
-create a file /config/shared/config_local.php with the content of the file /config/share/config_local.php
+cp config/shared/config_local.dist.php config/share/config_local.php
 ```
 
 ```
