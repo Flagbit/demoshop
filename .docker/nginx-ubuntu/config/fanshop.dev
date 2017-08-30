@@ -2,19 +2,19 @@ upstream fastcgi_backend {
   server fanshop-php:9000;
 }
 
-server {
-    listen 80;
-    server_name spryker-fanshop.dev backend.spryker-fanshop.dev;
-    return 301 https://$server_name$request_uri;
-}
+#server {
+#    listen 80;
+#    server_name spryker-fanshop.dev backend.spryker-fanshop.dev;
+#    return 301 https://$server_name$request_uri;
+#}
 
 server {
-        listen 443 ssl;
+        listen 80;
         server_name spryker-fanshop.dev;
         root /var/www/html/public/Yves;
 
-        ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;
-        ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
+        #ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;
+        #ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
 
         # PHP application
         location / {
@@ -75,12 +75,12 @@ server {
 }
 
 server {
-        listen 443 ssl;
+        listen 80;
         server_name backend.spryker-fanshop.dev;
         root /var/www/html/public/Zed;
 
-        ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;
-        ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
+        #ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;
+        #ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
 
         index index.php;
         autoindex off;

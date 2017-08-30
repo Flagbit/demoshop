@@ -1,6 +1,7 @@
 <?php
 
 use Pyz\Shared\Newsletter\NewsletterConstants;
+use Spryker\Shared\Auth\AuthConstants;
 use Spryker\Shared\Customer\CustomerConstants;
 use Spryker\Shared\Payolution\PayolutionConstants;
 use Spryker\Shared\ProductManagement\ProductManagementConstants;
@@ -78,5 +79,8 @@ $config[ZedRequestConstants::BASE_URL_ZED_API] = $config[ApplicationConstants::B
 $config[ZedRequestConstants::BASE_URL_SSL_ZED_API] = $config[ApplicationConstants::BASE_URL_SSL_ZED];
 
 // ---------- SSL
-$config[ApplicationConstants::YVES_SSL_ENABLED] = true;
-$config[SessionConstants::YVES_SSL_ENABLED] = true;
+//$config[ApplicationConstants::YVES_SSL_ENABLED] = true;
+//$config[SessionConstants::YVES_SSL_ENABLED] = true;
+//
+//$config[ApplicationConstants::ZED_SSL_ENABLED] = true;
+//$config[ZedRequestConstants::ZED_API_SSL_ENABLED] = true;
