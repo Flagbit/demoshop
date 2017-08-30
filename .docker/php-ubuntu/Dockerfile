@@ -14,7 +14,8 @@ RUN apt-get update -y && apt-get install -y \
     openssh-server \
     msmtp \
     sudo \
-    git-all
+    git-all \
+    dnsutils
 
 # Add nodejs repository
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
