@@ -178,11 +178,11 @@ function optimizeRepo {
 
 function resetDataStores {
     labelText "Flushing Elasticsearch index ${ELASTIC_SEARCH_INDEX}"
-    curl -XDELETE 'http://localhost:'${ELASTIC_SEARCH_PORT}'/'${ELASTIC_SEARCH_INDEX}'/'
+    curl -XDELETE 'fanshop-elasticsearch:'${ELASTIC_SEARCH_PORT}'/'${ELASTIC_SEARCH_INDEX}'/'
     writeErrorMessage "Elasticsearch reset failed"
 
     labelText "Flushing Redis"
-    redis-cli -p $REDIS_PORT FLUSHALL
+    redis-cli -h $REDIS_HOST -p $REDIS_PORT FLUSHALL
     writeErrorMessage "Redis reset failed"
 }
 

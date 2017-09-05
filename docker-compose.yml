@@ -1,0 +1,92 @@
+version: "2"
+
+services:
+    fanshop-nginx:
+        build: "./.docker/nginx-ubuntu/"
+        container_name: "fanshop-nginx"
+        domainname: spryker-fanshop.dev
+        volumes_from:
+          - "fanshop-php"
+        ports:
+          - "80:80"
+          - "443:443"
+        networks:
+          - fanshop-network
+
+    fanshop-postgresql-db:
+        image: postgres
+        container_name: fanshop-postgresql-db
+        expose:
+            - "5432"
+        ports:
+            - "5433:5432"
+        environment:
+            POSTGRES_PASSWORD: mate20mg
+            POSTGRES_DB: fanshop_db
+            POSTGRES_USER: development
+        networks:
+          - fanshop-network
+
+    fanshop-php:
+        build: "./.docker/php-ubuntu/"
+        container_name: "fanshop-php"
+        volumes:
+          - .:/var/www/html
+        volumes_from:
+          - "fanshop-jenkins"
+        expose:
+          - "9000"
+        networks:
+          - fanshop-network
+
+    fanshop-mailcatcher:
+        container_name: fanshop-mailcatcher
+        image: schickling/mailcatcher
+        ports:
+            - "1025:1025"
+            - "1080:1080"
+        networks:
+          - fanshop-network
+
+    fanshop-elasticsearch:
+        build: "./.docker/elasticsearch/"
+        container_name: "fanshop-elasticsearch"
+        networks:
+          - fanshop-network
+
+    fanshop-redis:
+        image: "redis:alpine"
+        container_name: "fanshop-redis"
+        expose:
+          - "6379"
+        networks:
+          - fanshop-network
+
+    fanshop-jenkins:
+        image: "jenkins/jenkins"
+        container_name: "fanshop-jenkins"
+        ports:
+          - "8080:8080"
+          - "50000:50000"
+        expose:
+          - "8080"
+        networks:
+          - fanshop-network
+
+    fanshop-rabbitmq:
+        image: "rabbitmq"
+        container_name: fanshop-rabbitmq
+        ports:
+          - "15672:15672"
+          - "5672:5672"
+        expose:
+          - "5672"
+        tty: true
+        volumes:
+            - "./.docker/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins"
+        networks:
+          - fanshop-network
+
+networks:
+  fanshop-network:
+    driver: bridge
