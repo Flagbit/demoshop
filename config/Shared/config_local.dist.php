@@ -43,7 +43,7 @@ $config[SearchConstants::ELASTICA_PARAMETER__PORT] = $ELASTICA_PORT;
 
 // ---------- Yves host
 $config[ApplicationConstants::HOST_YVES] = 'spryker-fanshop.dev';
-$config[ApplicationConstants::PORT_YVES] = ':443';
+$config[ApplicationConstants::PORT_YVES] = ':80';
 $config[ApplicationConstants::PORT_SSL_YVES] = '';
 $config[ApplicationConstants::BASE_URL_YVES] = sprintf(
     'http://%s%s',
@@ -63,6 +63,7 @@ $config[CustomerConstants::BASE_URL_YVES] = $config[ApplicationConstants::BASE_U
 
 // ---------- Zed host
 $config[ApplicationConstants::HOST_ZED] = 'backend.spryker-fanshop.dev';
+$config[ApplicationConstants::PORT_ZED] = ':80';
 $config[ZedRequestConstants::HOST_ZED_API] = $config[ApplicationConstants::HOST_ZED];
 $config[SessionConstants::ZED_SESSION_COOKIE_NAME] = $config[ApplicationConstants::HOST_ZED];
 
@@ -99,3 +100,8 @@ $config[RabbitMqConstants::RABBITMQ_HOST] = gethostbyname('fanshop-rabbitmq');
 $config[RabbitMqConstants::RABBITMQ_PORT] = '5672';
 $config[RabbitMqConstants::RABBITMQ_PASSWORD] = 'guest';
 $config[RabbitMqConstants::RABBITMQ_USERNAME] = 'guest';
+
+// ---------- Session
+$config[SessionConstants::YVES_SESSION_COOKIE_NAME] = $config[ApplicationConstants::HOST_YVES];
+$config[SessionConstants::YVES_SESSION_COOKIE_DOMAIN] = $config[ApplicationConstants::HOST_YVES];
+$config[SessionConstants::ZED_SESSION_COOKIE_NAME] = $config[ApplicationConstants::HOST_ZED];
