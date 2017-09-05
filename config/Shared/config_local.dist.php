@@ -6,10 +6,12 @@ use Spryker\Shared\Customer\CustomerConstants;
 use Spryker\Shared\Payolution\PayolutionConstants;
 use Spryker\Shared\ProductManagement\ProductManagementConstants;
 use Spryker\Shared\Propel\PropelConstants;
+use Spryker\Shared\RabbitMq\RabbitMqConstants;
 use Spryker\Shared\Session\SessionConstants;
 use Spryker\Shared\Setup\SetupConstants;
 use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Shared\Search\SearchConstants;
+use Spryker\Shared\Storage\StorageConstants;
 use Spryker\Shared\ZedRequest\ZedRequestConstants;
 
 // ---------- Propel
@@ -26,7 +28,7 @@ $config[PropelConstants::USE_SUDO_TO_MANAGE_DATABASE] = true;
 $jenkinsUser = 'admin';
 $jenkinsPass = trim(file_get_contents('/var/jenkins_home/secrets/initialAdminPassword'));
 $config[SetupConstants::JENKINS_BASE_URL] = sprintf('http://%s:%s@%s:8080/', $jenkinsUser, $jenkinsPass, gethostbyname('fanshop-jenkins'));
-$config[SetupConstants::JENKINS_DIRECTORY] = '/data/shop/development/shared/data/common/jenkins';
+$config[SetupConstants::JENKINS_DIRECTORY] = '/var/jenkins_home/';
 
 // ---------- Elasticsearch
 $ELASTICA_HOST = gethostbyname('fanshop-elasticsearch');
@@ -84,3 +86,16 @@ $config[ZedRequestConstants::BASE_URL_SSL_ZED_API] = $config[ApplicationConstant
 //
 //$config[ApplicationConstants::ZED_SSL_ENABLED] = true;
 //$config[ZedRequestConstants::ZED_API_SSL_ENABLED] = true;
+
+// ---------- Redis
+$config[StorageConstants::STORAGE_REDIS_PROTOCOL] = 'tcp';
+$config[StorageConstants::STORAGE_REDIS_HOST] = gethostbyname('fanshop-redis');
+$config[StorageConstants::STORAGE_REDIS_PORT] = '6379';
+$config[StorageConstants::STORAGE_REDIS_PASSWORD] = false;
+$config[StorageConstants::STORAGE_REDIS_DATABASE] = 0;
+
+// ---------- RabbitMQ
+$config[RabbitMqConstants::RABBITMQ_HOST] = gethostbyname('fanshop-rabbitmq');
+$config[RabbitMqConstants::RABBITMQ_PORT] = '5672';
+$config[RabbitMqConstants::RABBITMQ_PASSWORD] = 'guest';
+$config[RabbitMqConstants::RABBITMQ_USERNAME] = 'guest';

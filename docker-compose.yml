@@ -57,6 +57,8 @@ services:
     fanshop-redis:
         image: "redis:alpine"
         container_name: "fanshop-redis"
+        expose:
+          - "6379"
         networks:
           - fanshop-network
 
@@ -68,6 +70,20 @@ services:
           - "50000:50000"
         expose:
           - "8080"
+        networks:
+          - fanshop-network
+
+    fanshop-rabbitmq:
+        image: "rabbitmq"
+        container_name: fanshop-rabbitmq
+        ports:
+          - "15672:15672"
+          - "5672:5672"
+        expose:
+          - "5672"
+        tty: true
+        volumes:
+            - "./.docker/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins"
         networks:
           - fanshop-network
 
